@@ -1,0 +1,36 @@
+# FastAPI Framework
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+
+# Email validation (required for Pydantic EmailStr)
+email-validator==2.1.0
+
+# Database - SQLModel with Async PostgreSQL
+sqlmodel==0.0.14
+asyncpg==0.29.0
+greenlet==3.0.3
+
+# Migrations
+alembic==1.13.1
+
+# Authentication
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
+python-multipart==0.0.6
+
+# OpenAI API
+openai==1.12.0
+
+# Supabase Storage
+supabase==2.3.4
+
+# Configuration
+pydantic-settings==2.1.0
+python-dotenv==1.0.1
+
+# HTTP Client (for Supabase) - must be <0.26 for supabase compatibility
+httpx>=0.24.0,<0.26.0
+
+# Date utilities
+python-dateutil==2.8.2
