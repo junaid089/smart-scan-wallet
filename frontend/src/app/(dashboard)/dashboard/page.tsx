@@ -1,10 +1,10 @@
 'use client';
 
 import { DollarSign, TrendingUp, Receipt, CreditCard } from 'lucide-react';
-import { SpendingCard } from '@/components/dashboard/spending-card';
-import { CategoryChart } from '@/components/dashboard/category-chart';
-import { useMonthlyAnalytics, useSpendingSummary, useExpenses } from '@/hooks/use-analytics';
-import { formatCurrency } from '@/lib/utils';
+import { SpendingCard } from '../../../components/dashboard/spending-card';
+import { CategoryChart } from '../../../components/dashboard/category-chart';
+import { useMonthlyAnalytics, useSpendingSummary, useExpenses } from '../../../hooks/use-analytics';
+import { formatCurrency } from '../../../lib/utils';
 
 export default function DashboardPage() {
     const { data: monthlyData, isLoading: isLoadingMonthly } = useMonthlyAnalytics();

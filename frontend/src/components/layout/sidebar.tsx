@@ -10,8 +10,8 @@ import {
     LogOut,
     Wallet
 } from 'lucide-react';
-import { useAuth } from '@/components/auth/auth-provider';
-import { cn } from '@/lib/utils';
+import { useAuth } from '../auth/auth-provider';
+import { cn } from '../../lib/utils';
 
 const navItems = [
     { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },

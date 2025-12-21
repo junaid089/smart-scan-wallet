@@ -2,8 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User, Loader2, Sparkles } from 'lucide-react';
-import api from '@/lib/axios';
-import { ChatMessage, ChatResponse } from '@/types';
+import api from '../../../lib/axios';
+import { ChatMessage, ChatResponse } from '../../../types';
 
 const suggestedQuestions = [
     "How much did I spend this month?",
@@ -116,8 +116,8 @@ export default function ChatPage() {
                                     )}
                                     <div
                                         className={`max-w-[70%] px-4 py-3 rounded-xl ${message.role === 'user'
-                                                ? 'bg-purple-500 text-white'
-                                                : 'bg-slate-800 text-slate-200'
+                                            ? 'bg-purple-500 text-white'
+                                            : 'bg-slate-800 text-slate-200'
                                             }`}
                                     >
                                         <p className="text-sm">{message.content}</p>

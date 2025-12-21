@@ -1,7 +1,7 @@
 'use client';
 
-import { useExpenses } from '@/hooks/use-analytics';
-import { formatCurrency, formatDate, getCategoryColor } from '@/lib/utils';
+import { useExpenses } from '../../../hooks/use-analytics';
+import { formatCurrency, formatDate, getCategoryColor } from '../../../lib/utils';
 import { Receipt } from 'lucide-react';
 
 export default function ExpensesPage() {

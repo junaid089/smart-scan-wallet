@@ -1,7 +1,7 @@
 'use client';
 
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
-import { CategorySpending } from '@/types';
+import { CategorySpending } from '../../types';
 
 interface CategoryChartProps {
     data: CategorySpending[];
