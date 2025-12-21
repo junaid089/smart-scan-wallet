@@ -33,7 +33,7 @@ export function CategoryChart({ data }: CategoryChartProps) {
                     outerRadius={100}
                     paddingAngle={2}
                     dataKey="value"
-                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                    label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
                     labelLine={false}
                 >
                     {chartData.map((entry, index) => (
@@ -41,7 +41,7 @@ export function CategoryChart({ data }: CategoryChartProps) {
                     ))}
                 </Pie>
                 <Tooltip
-                    formatter={(value: number) => [`$${value.toFixed(2)}`, 'Amount']}
+                    formatter={(value) => [`$${(value as number).toFixed(2)}`, 'Amount']}
                     contentStyle={{
                         backgroundColor: '#1e293b',
                         border: '1px solid #334155',
