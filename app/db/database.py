@@ -12,15 +12,24 @@ from sqlmodel import SQLModel
 from app.core.config import settings
 
 
+# Convert Railway's postgresql:// to asyncpg format if needed
+def get_async_database_url() -> str:
+    url = settings.database_url
+    if url.startswith("postgresql://"):
+        url = url.replace("postgresql://", "postgresql+asyncpg://", 1)
+    return url
+
+
 # Create async engine for PostgreSQL with asyncpg driver
 async_engine = create_async_engine(
-    settings.database_url,
+    get_async_database_url(),
     echo=settings.debug,
     future=True,
     pool_pre_ping=True,
     pool_size=5,
     max_overflow=10,
 )
+
 
 # Async session factory
 async_session_factory = sessionmaker(
