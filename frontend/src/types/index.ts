@@ -22,13 +22,13 @@ export interface Expense {
   created_at: string;
 }
 
-export type ExpenseCategory = 
-  | 'FOOD' 
-  | 'TRANSPORT' 
-  | 'UTILITIES' 
-  | 'ENTERTAINMENT' 
-  | 'HEALTH' 
-  | 'SHOPPING' 
+export type ExpenseCategory =
+  | 'FOOD'
+  | 'TRANSPORT'
+  | 'UTILITIES'
+  | 'ENTERTAINMENT'
+  | 'HEALTH'
+  | 'SHOPPING'
   | 'OTHER';
 
 export interface ReceiptUploadResponse {
@@ -75,9 +75,11 @@ export interface ChatResponse {
 }
 
 export interface SpendingSummary {
-  total_spending: number;
+  total_all_time: number;
+  current_month_spending: number;
   expense_count: number;
-  average_per_expense: number;
-  top_category: string;
-  top_category_amount: number;
+  top_category: {
+    name: string;
+    amount: number;
+  } | null;
 }

@@ -25,7 +25,7 @@ export default function DashboardPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <SpendingCard
                     title="Total Spending"
-                    value={isLoading ? '...' : formatCurrency(summaryData?.total_spending || 0)}
+                    value={isLoading ? '...' : formatCurrency(summaryData?.total_all_time || 0)}
                     icon={DollarSign}
                 />
                 <SpendingCard
@@ -40,7 +40,11 @@ export default function DashboardPage() {
                 />
                 <SpendingCard
                     title="Avg Per Expense"
-                    value={isLoading ? '...' : formatCurrency(summaryData?.average_per_expense || 0)}
+                    value={isLoading ? '...' : formatCurrency(
+                        summaryData?.expense_count && summaryData.expense_count > 0
+                            ? (summaryData.total_all_time || 0) / summaryData.expense_count
+                            : 0
+                    )}
                     icon={CreditCard}
                 />
             </div>
