@@ -41,9 +41,7 @@ export default function DashboardPage() {
                 <SpendingCard
                     title="Avg Per Expense"
                     value={isLoading ? '...' : formatCurrency(
-                        summaryData?.expense_count && summaryData.expense_count > 0
-                            ? (summaryData.total_all_time || 0) / summaryData.expense_count
-                            : 0
+                        summaryData?.expense_count ? (summaryData.total_all_time / summaryData.expense_count) : 0
                     )}
                     icon={CreditCard}
                 />

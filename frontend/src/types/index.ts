@@ -77,6 +77,7 @@ export interface ChatResponse {
 export interface SpendingSummary {
   total_all_time: number;
   current_month_spending: number;
+  current_month: string;
   expense_count: number;
   top_category: {
     name: string;
