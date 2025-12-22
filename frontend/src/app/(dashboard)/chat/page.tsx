@@ -2,8 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User, Loader2, Sparkles } from 'lucide-react';
-import api from '../../../lib/axios';
-import { ChatMessage, ChatResponse } from '../../../types';
+import api from '@/lib/axios';
+import { ChatMessage, ChatResponse } from '@/types';
 
 const suggestedQuestions = [
     "How much did I spend this month?",

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import api from '../lib/axios';
-import { MonthlyAnalytics, SpendingSummary, Expense } from '../types';
+import api from '@/lib/axios';
+import { MonthlyAnalytics, SpendingSummary, Expense } from '@/types';
 
 export function useMonthlyAnalytics() {
     return useQuery({

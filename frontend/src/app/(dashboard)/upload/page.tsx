@@ -3,9 +3,9 @@
 import { useState, useCallback } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { Upload, FileImage, CheckCircle, Loader2, X } from 'lucide-react';
-import api from '../../../lib/axios';
-import { ReceiptUploadResponse } from '../../../types';
-import { formatCurrency } from '../../../lib/utils';
+import api from '@/lib/axios';
+import { ReceiptUploadResponse } from '@/types';
+import { formatCurrency } from '@/lib/utils';
 
 type UploadState = 'idle' | 'uploading' | 'scanning' | 'success' | 'error';
 

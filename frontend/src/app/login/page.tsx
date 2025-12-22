@@ -4,8 +4,8 @@ import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Loader2, Wallet } from 'lucide-react';
-import { login } from '../../lib/auth';
-import { useAuth } from '../../components/auth/auth-provider';
+import { login } from '@/lib/auth';
+import { useAuth } from '@/components/auth/auth-provider';
 
 function LoginForm() {
     const router = useRouter();

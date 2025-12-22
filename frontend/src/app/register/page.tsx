@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Loader2, Wallet } from 'lucide-react';
-import { register } from '../../lib/auth';
+import { register } from '@/lib/auth';
 
 export default function RegisterPage() {
     const router = useRouter();
