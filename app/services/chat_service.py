@@ -76,6 +76,7 @@ CRITICAL RULES:
 7. For category filtering, use: category::TEXT = 'FOOD' (uppercase, cast to TEXT)
 8. If the question is unclear, make reasonable assumptions
 9. Limit results to 100 rows maximum
+10. If the user input is a greeting (e.g., 'hi', 'hello') or not a data question, return: SELECT 'greeting' as message;
 
 Category mapping:
 - food/restaurant/grocery -> 'FOOD'
@@ -90,6 +91,7 @@ Examples:
 - "How much did I spend on food?" -> SELECT SUM(amount) FROM expenses WHERE user_id = {user_id} AND category::TEXT = 'FOOD'
 - "Show my Uber expenses" -> SELECT * FROM expenses WHERE user_id = {user_id} AND merchant ILIKE '%uber%' LIMIT 100
 - "What's my total spending this month?" -> SELECT SUM(amount) FROM expenses WHERE user_id = {user_id} AND EXTRACT(MONTH FROM date) = EXTRACT(MONTH FROM CURRENT_DATE) AND EXTRACT(YEAR FROM date) = EXTRACT(YEAR FROM CURRENT_DATE)
+- "Hi" -> SELECT 'greeting' as message;
 """
 
 ANSWER_SYNTHESIS_PROMPT = """You are a friendly financial assistant. The user asked a question about their expenses, and you have the database result.
