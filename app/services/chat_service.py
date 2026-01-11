@@ -203,8 +203,9 @@ async def generate_sql_query(question: str, user_id: int) -> str:
                 detail="Generated query failed security validation"
             )
         
-        # Ensure user_id filter is present
-        if f"user_id = {user_id}" not in sql and f"user_id={user_id}" not in sql:
+        # Ensure user_id filter is present (skip for greetings)
+        is_greeting = "'greeting' as message" in sql.lower()
+        if not is_greeting and f"user_id = {user_id}" not in sql and f"user_id={user_id}" not in sql:
             # Add user_id filter if missing
             if "WHERE" in sql.upper():
                 sql = sql.replace("WHERE", f"WHERE user_id = {user_id} AND", 1)
