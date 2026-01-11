@@ -2,6 +2,7 @@
 
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 import { CategorySpending } from '@/types';
+import { formatCurrency } from '@/lib/utils';
 
 interface CategoryChartProps {
     data: CategorySpending[];
@@ -41,7 +42,7 @@ export function CategoryChart({ data }: CategoryChartProps) {
                     ))}
                 </Pie>
                 <Tooltip
-                    formatter={(value) => [formatCurrency(value as number), 'Amount']}
+                    formatter={(value) => [`$${(value as number).toFixed(2)}`, 'Amount']}
                     contentStyle={{
                         backgroundColor: '#1e293b',
                         border: '1px solid #334155',
