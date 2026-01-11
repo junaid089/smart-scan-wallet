@@ -72,7 +72,7 @@ CRITICAL RULES:
 3. Return ONLY the raw SQL query - no markdown, no explanation, no code blocks
 4. Use proper PostgreSQL syntax
 5. For date filtering, use EXTRACT() or date comparisons
-6. For "today" queries, handling timezones is critical. Query for: date >= CURRENT_DATE - INTERVAL '1 day' AND date <= CURRENT_DATE + INTERVAL '1 day'
+6. For "today" queries, handling timezones is critical. Query for: date >= CURRENT_DATE - INTERVAL '1 day' AND date < CURRENT_DATE + INTERVAL '2 days'
 7. For text search on merchant, use ILIKE for case-insensitive matching
 8. For category filtering, use: category::TEXT = 'FOOD' (uppercase, cast to TEXT)
 9. If the question is unclear, make reasonable assumptions
