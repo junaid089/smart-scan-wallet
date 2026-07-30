@@ -80,12 +80,14 @@ Return your response as a JSON object with this EXACT structure:
     "merchant": "Name of the store or business",
     "date": "YYYY-MM-DD",
     "amount": 0.00,
+    "currency": "INR",
     "category": "One of: Food, Transport, Utilities, Entertainment, Health, Shopping, Other",
     "is_subscription": false
 }}
 
 Remember:
 - "amount" must be a number (float), not a string
+- "currency" should be the currency code (default "INR" for Indian Rupees ₹ unless another symbol like $, €, £ is clearly specified)
 - "date" must be in YYYY-MM-DD format
 - "category" must be exactly one of the allowed values
 - "is_subscription" must be a boolean (true/false)"""
@@ -167,11 +169,17 @@ def validate_and_parse_response(response_text: str) -> dict:
             detail="Invalid amount value in AI response"
         )
     
+    # Currency (defaults to INR)
+    currency = str(data.get("currency", settings.default_currency)).upper()
+    if not currency or len(currency) > 10:
+        currency = settings.default_currency
+    
     # Build validated response
     return {
         "merchant": str(data.get("merchant", "Unknown Merchant"))[:255],
         "date": parsed_date,
         "amount": amount,
+        "currency": currency,
         "category": ExpenseCategory(category_value),
         "is_subscription": bool(data.get("is_subscription", False))
     }

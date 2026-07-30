@@ -32,6 +32,10 @@ class Settings(BaseSettings):
     supabase_key: str = ""
     supabase_bucket: str = "receipts"
     
+    # Currency Settings
+    default_currency: str = "INR"
+    currency_symbol: str = "₹"
+    
     # App info
     app_name: str = "Smart-Scan Wallet"
     app_version: str = "1.0.0"

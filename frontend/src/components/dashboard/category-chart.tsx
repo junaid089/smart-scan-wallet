@@ -42,7 +42,7 @@ export function CategoryChart({ data }: CategoryChartProps) {
                     ))}
                 </Pie>
                 <Tooltip
-                    formatter={(value) => [`$${(value as number).toFixed(2)}`, 'Amount']}
+                    formatter={(value) => [formatCurrency(value as number), 'Amount']}
                     contentStyle={{
                         backgroundColor: '#1e293b',
                         border: '1px solid #334155',

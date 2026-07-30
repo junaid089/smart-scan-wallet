@@ -88,6 +88,7 @@ async def upload_receipt(
             user_id=current_user.id,
             merchant=ocr_data["merchant"],
             amount=ocr_data["amount"],
+            currency=ocr_data.get("currency", "INR"),
             date=ocr_data["date"],
             category=ocr_data["category"],
             is_subscription=ocr_data["is_subscription"],
@@ -110,6 +111,7 @@ async def upload_receipt(
     ocr_response = {
         "merchant": ocr_data["merchant"],
         "amount": float(ocr_data["amount"]),
+        "currency": ocr_data.get("currency", "INR"),
         "date": ocr_data["date"].isoformat(),
         "category": ocr_data["category"].value,
         "is_subscription": ocr_data["is_subscription"]

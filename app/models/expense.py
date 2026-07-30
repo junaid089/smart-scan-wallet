@@ -29,6 +29,11 @@ class ExpenseBase(SQLModel):
         default=ExpenseCategory.OTHER,
         description="Category of the expense"
     )
+    currency: str = Field(
+        default="INR",
+        max_length=10,
+        description="Currency code for transaction (defaults to INR)"
+    )
     is_subscription: bool = Field(
         default=False,
         description="Whether this is a recurring subscription"

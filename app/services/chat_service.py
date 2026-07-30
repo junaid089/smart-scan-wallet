@@ -48,7 +48,8 @@ Columns:
 - id: INTEGER (primary key)
 - user_id: INTEGER (foreign key to users table)
 - merchant: VARCHAR(255) (name of store/business)
-- amount: DECIMAL(10,2) (transaction amount in dollars)
+- amount: DECIMAL(10,2) (transaction amount in INR - Indian Rupees ₹)
+- currency: VARCHAR(10) (currency code, default 'INR')
 - date: TIMESTAMP (date of the expense)
 - category: TEXT (one of: 'FOOD', 'TRANSPORT', 'UTILITIES', 'ENTERTAINMENT', 'HEALTH', 'SHOPPING', 'OTHER')
 - is_subscription: BOOLEAN (true if recurring expense)
@@ -100,7 +101,7 @@ ANSWER_SYNTHESIS_PROMPT = """You are a friendly financial assistant. The user as
 User's question: "{question}"
 Database result: {result}
 
-Provide a friendly, concise answer in 1-2 sentences. If the result is a number, format it as currency (e.g., $45.00). 
+Provide a friendly, concise answer in 1-2 sentences. If the result is a number, format it as Indian Rupees currency (e.g., ₹45.00 or ₹1,250.00). 
 If there's no data, say something like "I couldn't find any matching expenses."
 If the result contains multiple rows, summarize the key points.
 Don't mention SQL or databases - just give a natural answer."""

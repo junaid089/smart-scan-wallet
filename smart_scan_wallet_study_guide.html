@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart-Scan Wallet: Beginner's Full-Stack AI Study Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true, theme: 'dark'});</script>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #6366f1;
+            --accent-secondary: #a855f7;
+            --accent-green: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-cyan: #06b6d4;
+            --border-color: #334155;
+            --code-bg: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Header Banner */
+        header {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.15));
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        header .badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        header h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ffffff, #c7d2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.75rem;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Navigation Table of Contents */
+        .toc-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.75rem;
+            margin-bottom: 3rem;
+        }
+
+        .toc-card h3 {
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .toc-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toc-link:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(4px);
+            color: var(--accent-primary);
+        }
+
+        /* Modules */
+        .module {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 2.25rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .module-number {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .module-title h2 {
+            font-size: 1.6rem;
+            color: #ffffff;
+        }
+
+        .module-title p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        h3 {
+            color: var(--accent-cyan);
+            margin: 1.75rem 0 1rem 0;
+            font-size: 1.25rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #cbd5e1;
+        }
+
+        /* Analogy Card */
+        .analogy-box {
+            background: rgba(99, 102, 241, 0.1);
+            border-left: 4px solid var(--accent-primary);
+            padding: 1.25rem 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1.5rem 0;
+        }
+
+        .analogy-box strong {
+            color: var(--accent-primary);
+            display: block;
+            margin-bottom: 0.4rem;
+            font-size: 1.05rem;
+        }
+
+        /* Alert / Callout Boxes */
+        .callout {
+            padding: 1.25rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .callout.tip {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #a7f3d0;
+        }
+
+        .callout.warning {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: #fde68a;
+        }
+
+        .callout-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        /* Tech Grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 1.25rem;
+            border-radius: 12px;
+        }
+
+        .tech-card h4 {
+            color: #ffffff;
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tech-card p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* Code Block */
+        pre {
+            background-color: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            overflow-x: auto;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+            margin: 1.25rem 0;
+        }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.88em;
+            color: #e2e8f0;
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+        }
+
+        .keyword { color: #f472b6; }
+        .function { color: #38bdf8; }
+        .string { color: #4ade80; }
+        .comment { color: #64748b; font-style: italic; }
+        .type { color: #fbbf24; }
+
+        /* Diagram Container */
+        .mermaid-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        /* Quiz Section */
+        .quiz-item {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .quiz-question {
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+        }
+
+        details {
+            margin-top: 0.5rem;
+            cursor: pointer;
+        }
+
+        summary {
+            color: var(--accent-primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        details[open] summary {
+            margin-bottom: 0.5rem;
+        }
+
+        .answer-box {
+            background: var(--bg-secondary);
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-green);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        /* Print Styles for PDF Export */
+        @media print {
+            body {
+                background-color: #ffffff !important;
+                color: #1e293b !important;
+                padding: 0;
+            }
+            .container {
+                max-width: 100%;
+            }
+            header, .module, .toc-card, .tech-card, pre, .mermaid-container, .quiz-item {
+                background: #ffffff !important;
+                color: #1e293b !important;
+                border: 1px solid #cbd5e1 !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+            }
+            header h1, .module-title h2, h3, .tech-card h4, .quiz-question {
+                color: #0f172a !important;
+                -webkit-text-fill-color: initial !important;
+            }
+            p, .module-title p, .tech-card p {
+                color: #334155 !important;
+            }
+            .analogy-box {
+                background: #f1f5f9 !important;
+                border-left-color: #4f46e5 !important;
+            }
+            pre, code {
+                background: #f8fafc !important;
+                color: #0f172a !important;
+                border: 1px solid #cbd5e1 !important;
+            }
+            .comment { color: #64748b !important; }
+            .keyword { color: #c026d3 !important; }
+            .function { color: #0284c7 !important; }
+            .string { color: #16a34a !important; }
+            .toc-link {
+                background: #f8fafc !important;
+                color: #0f172a !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header -->
+        <header>
+            <span class="badge">Beginner's Study Material</span>
+            <h1>Smart-Scan Wallet</h1>
+            <p>Mastering Full-Stack AI Engineering: FastAPI, PostgreSQL, Next.js, Vision OCR, and RAG-Lite Text-to-SQL</p>
+        </header>
+
+        <!-- Table of Contents -->
+        <div class="toc-card">
+            <h3>📖 Table of Contents</h3>
+            <div class="toc-grid">
+                <a href="#m1" class="toc-link"><span>01</span> Core Concepts & Terminology</a>
+                <a href="#m2" class="toc-link"><span>02</span> High-Level Tech Stack & Analogy</a>
+                <a href="#m3" class="toc-link"><span>03</span> System Architecture & Data Flow</a>
+                <a href="#m4" class="toc-link"><span>04</span> Deep Dive: Vision OCR Engine</a>
+                <a href="#m5" class="toc-link"><span>05</span> Deep Dive: Text-to-SQL (RAG-Lite)</a>
+                <a href="#m6" class="toc-link"><span>06</span> Security & Row Isolation</a>
+                <a href="#m7" class="toc-link"><span>07</span> Code Walkthrough for Beginners</a>
+                <a href="#m8" class="toc-link"><span>08</span> Self-Assessment Quiz & Exercises</a>
+            </div>
+        </div>
+
+        <!-- Module 1 -->
+        <div class="module" id="m1">
+            <div class="module-header">
+                <div class="module-number">1</div>
+                <div class="module-title">
+                    <h2>Core Concepts & Terminology</h2>
+                    <p>Building blocks you need to understand full-stack AI applications</p>
+                </div>
+            </div>
+
+            <p>Before diving into code, let's establish a clear understanding of the fundamental concepts used in modern AI-powered web applications.</p>
+
+            <div class="analogy-box">
+                <strong>💡 What is a Full-Stack AI SaaS?</strong>
+                A <strong>SaaS</strong> (Software-as-a-Service) is an application hosted on the web that users can access on-demand. A <strong>Full-Stack AI SaaS</strong> combines a visual user interface (Frontend), a backend server (FastAPI), a database (PostgreSQL), and Artificial Intelligence APIs (OpenAI) to automate complex manual tasks.
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h4>🔌 REST API</h4>
+                    <p>A structured way for the frontend (browser) to talk to the backend (server) using HTTP requests (GET, POST).</p>
+                </div>
+                <div class="tech-card">
+                    <h4>⚡ Async (Asynchronous)</h4>
+                    <p>Allows the server to handle thousands of requests simultaneously without waiting idly for database or AI responses.</p>
+                </div>
+                <div class="tech-card">
+                    <h4>👁️ Vision OCR</h4>
+                    <p>Optical Character Recognition powered by Multimodal AI that reads text and numbers from raw images.</p>
+                </div>
+                <div class="tech-card">
+                    <h4>💬 RAG-Lite / Text-to-SQL</h4>
+                    <p>Converting plain user English into safe database queries (SQL) so users can chat directly with their financial records.</p>
+                </div>
+                <div class="tech-card">
+                    <h4>🔐 JWT (JSON Web Token)</h4>
+                    <p>A digital passport given to users after logging in, allowing them to access protected endpoints securely.</p>
+                </div>
+                <div class="tech-card">
+                    <h4>🗄️ ORM (SQLModel)</h4>
+                    <p>Object-Relational Mapping allows developers to interact with database tables using Python code instead of raw SQL strings.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 2 -->
+        <div class="module" id="m2">
+            <div class="module-header">
+                <div class="module-number">2</div>
+                <div class="module-title">
+                    <h2>High-Level Tech Stack & Restaurant Analogy</h2>
+                    <p>Understanding how every layer of the application works together</p>
+                </div>
+            </div>
+
+            <p>To understand how a full-stack project works, imagine a high-end restaurant:</p>
+
+            <div class="analogy-box">
+                <strong>🍽️ The Restaurant Analogy:</strong>
+                <ul>
+                    <li><strong>Frontend (Next.js 14):</strong> The Dining Room & Menu. It's what the customer sees and interacts with.</li>
+                    <li><strong>Backend Gateway (FastAPI):</strong> The Waitstaff & Manager. They take orders (HTTP requests), check authorization, and coordinate between kitchen and pantry.</li>
+                    <li><strong>Database (PostgreSQL & SQLModel):</strong> The Pantry & Refrigerator. Safely holds organized raw ingredients (user accounts, expense rows).</li>
+                    <li><strong>AI Engine (OpenAI GPT-4o-mini):</strong> The Master Chef. Reads messy paper recipes (receipt images) and turns them into organized dishes (JSON data).</li>
+                    <li><strong>Storage (Supabase Storage):</strong> The Filing Cabinet. Stores original receipt photos safely in the cloud.</li>
+                </ul>
+            </div>
+
+            <div class="callout tip">
+                <div class="callout-icon">💡</div>
+                <div>
+                    <strong>Key Advantage of Async Architecture:</strong> In traditional servers, if 100 users upload receipts at the same time, the server blocks and waits for each receipt. In Smart-Scan Wallet's <code>asyncpg</code> + <code>FastAPI</code> setup, the server delegates AI calls asynchronously, remaining 100% responsive!
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 3 -->
+        <div class="module" id="m3">
+            <div class="module-header">
+                <div class="module-number">3</div>
+                <div class="module-title">
+                    <h2>System Architecture & Data Flow</h2>
+                    <p>Visual map of how data moves from user upload to database storage</p>
+                </div>
+            </div>
+
+            <p>Here is the visual blueprint of the system. Study how request flows originate from the browser client down to the database and external cloud services:</p>
+
+            <div class="mermaid-container">
+                <pre class="mermaid">
+graph TD
+    subgraph Client Layer
+        A[Next.js 14 Dashboard] -->|JWT Auth Header| B[FastAPI REST API]
+    end
+
+    subgraph Core API Endpoints
+        B --> C[/api/v1/auth - Authentication/]
+        B --> D[/api/v1/receipts - OCR & Upload/]
+        B --> E[/api/v1/analytics - Charts & Summaries/]
+        B --> F[/api/v1/chat - Text-to-SQL Query/]
+    end
+
+    subgraph Services & External APIs
+        D -->|Save Image| G[Supabase Storage]
+        D -->|Process Image| H[OpenAI GPT-4o-mini Vision]
+        F -->|Generate & Synthesize| H
+        C -->|User Records| I[(PostgreSQL Database)]
+        D -->|Persist Expense| I
+        E -->|Group By Queries| I
+        F -->|Execute SELECT| I
+    end
+                </pre>
+            </div>
+        </div>
+
+        <!-- Module 4 -->
+        <div class="module" id="m4">
+            <div class="module-header">
+                <div class="module-number">4</div>
+                <div class="module-title">
+                    <h2>Deep Dive: Vision OCR Engine</h2>
+                    <p>How raw images turn into structured database records</p>
+                </div>
+            </div>
+
+            <p>Receipt OCR in Smart-Scan Wallet does not use traditional keyword matching. Instead, it uses <strong>Multimodal Large Language Models (LLMs)</strong> with strict system prompt enforcement.</p>
+
+            <h3>The 5-Step OCR Pipeline</h3>
+            <ol style="margin-left: 1.5rem; margin-bottom: 1.5rem; color: #cbd5e1;">
+                <li><strong>Image Ingestion:</strong> The user selects a JPEG/PNG/HEIC image file.</li>
+                <li><strong>Storage Upload:</strong> <code>StorageService</code> assigns a unique UUID name (`user_id/timestamp_uuid_name.jpg`) and uploads it to Supabase (or local storage).</li>
+                <li><strong>Vision Prompting:</strong> The receipt URL (or base64 payload) is sent to <code>gpt-4o-mini</code> with strict instructions to return <em>only</em> JSON.</li>
+                <li><strong>Validation & Parsing:</strong> Python cleans markdown formatting (` ```json `), parses the JSON, normalizes the date, validates the amount Decimal, and maps the category to a strict Enum.</li>
+                <li><strong>DB Persistence:</strong> An <code>Expense</code> record is created and saved to PostgreSQL.</li>
+            </ol>
+
+            <div class="callout warning">
+                <div class="callout-icon">⚠️</div>
+                <div>
+                    <strong>Category Enforcement:</strong> AI output can be unpredictable. If GPT outputs "Groceries", the system's normalization logic maps it to the strict Enum value <code>"Food"</code>. If unmapped, it gracefully defaults to <code>"Other"</code>.
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 5 -->
+        <div class="module" id="m5">
+            <div class="module-header">
+                <div class="module-number">5</div>
+                <div class="module-title">
+                    <h2>Deep Dive: Text-to-SQL (RAG-Lite Engine)</h2>
+                    <p>Allowing users to query database tables using natural language</p>
+                </div>
+            </div>
+
+            <p>Traditional search requires hardcoded filter dropdowns. Smart-Scan Wallet enables <strong>RAG-Lite Text-to-SQL</strong> so users can ask questions like: <em>"How much did I spend on Uber this month?"</em></p>
+
+            <div class="mermaid-container">
+                <pre class="mermaid">
+sequenceDiagram
+    autonumber
+    actor User
+    participant Frontend as Next.js Chat UI
+    participant Service as Chat Service
+    participant AI as OpenAI GPT-4o-mini
+    participant DB as PostgreSQL
+
+    User->>Frontend: "How much did I spend on sushi?"
+    Frontend->>Service: POST /api/v1/chat/
+    Service->>AI: Prompt (Inject Database Schema + user_id=4)
+    AI-->>Service: SELECT SUM(amount) FROM expenses WHERE user_id=4 AND merchant ILIKE '%sushi%'
+    Service->>Service: Validate Security Rules (SELECT only, no DROP/DELETE)
+    Service->>DB: Execute Query
+    DB-->>Service: Result: $42.50
+    Service->>AI: Synthesize Prompt (Question + $42.50)
+    AI-->>Service: "You spent $42.50 on sushi."
+    Service-->>Frontend: Natural Answer + SQL Query
+            </pre>
+            </div>
+        </div>
+
+        <!-- Module 6 -->
+        <div class="module" id="m6">
+            <div class="module-header">
+                <div class="module-number">6</div>
+                <div class="module-title">
+                    <h2>Security & Row-Level Data Isolation</h2>
+                    <p>How to keep financial data secure and private</p>
+                </div>
+            </div>
+
+            <p>Personal financial apps require enterprise-grade security. Here are the core defensive mechanisms implemented in this codebase:</p>
+
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h4>🔒 Password Hashing</h4>
+                    <p>Passwords are never stored in plain text. They are hashed using <code>bcrypt</code> with automated salt generation.</p>
+                </div>
+                <div class="tech-card">
+                    <h4>🛡️ User Data Isolation</h4>
+                    <p>Every SQL query automatically filters by <code>WHERE user_id = current_user.id</code>, preventing User A from seeing User B's expenses.</p>
+                </div>
+                <div class="tech-card">
+                    <h4>🛑 SQL Injection Defense</h4>
+                    <p>The AI Chat Service validates all generated SQL queries. Any query containing keywords like <code>DROP</code>, <code>DELETE</code>, or <code>UPDATE</code> is immediately rejected.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 7 -->
+        <div class="module" id="m7">
+            <div class="module-header">
+                <div class="module-number">7</div>
+                <div class="module-title">
+                    <h2>Code Walkthrough for Beginners</h2>
+                    <p>Annotated code snippets directly from the workspace</p>
+                </div>
+            </div>
+
+            <h3>1. SQLModel Expense Schema (<a href="file:///c:/git/project_cv/app/models/expense.py" style="color: var(--accent-cyan);">app/models/expense.py</a>)</h3>
+            <p>Notice how SQLModel combines database columns and Pydantic validation into a single class:</p>
+
+            <pre><code><span class="keyword">class</span> <span class="type">Expense</span>(<span class="type">ExpenseBase</span>, table=<span class="keyword">True</span>):
+    __tablename__ = <span class="string">"expenses"</span>
+    
+    id: <span class="type">Optional</span>[<span class="type">int</span>] = Field(default=<span class="keyword">None</span>, primary_key=<span class="keyword">True</span>)
+    user_id: <span class="type">int</span> = Field(foreign_key=<span class="string">"users.id"</span>, index=<span class="keyword">True</span>) <span class="comment"># Link to User</span>
+    receipt_url: <span class="type">Optional</span>[<span class="type">str</span>] = Field(default=<span class="keyword">None</span>, max_length=<span class="number">500</span>)
+    created_at: <span class="type">datetime</span> = Field(default_factory=datetime.utcnow)
+    
+    <span class="comment"># Relationships</span>
+    user: <span class="type">Optional</span>[<span class="string">"User"</span>] = Relationship(back_populates=<span class="string">"expenses"</span>)</code></pre>
+
+            <h3>2. Text-to-SQL Security Guard (<a href="file:///c:/git/project_cv/app/services/chat_service.py" style="color: var(--accent-cyan);">app/services/chat_service.py</a>)</h3>
+            <p>This function verifies that AI-generated queries cannot alter or damage the database:</p>
+
+            <pre><code><span class="keyword">def</span> <span class="function">validate_sql_query</span>(sql: <span class="type">str</span>) -> <span class="type">bool</span>:
+    normalized = <span class="string">" "</span>.join(sql.upper().split())
+    
+    <span class="comment"># Prohibited dangerous SQL operations</span>
+    dangerous_keywords = [
+        <span class="string">"INSERT"</span>, <span class="string">"UPDATE"</span>, <span class="string">"DELETE"</span>, <span class="string">"DROP"</span>, <span class="string">"TRUNCATE"</span>,
+        <span class="string">"ALTER"</span>, <span class="string">"CREATE"</span>, <span class="string">"GRANT"</span>, <span class="string">"EXEC"</span>, <span class="string">"--"</span>
+    ]
+    
+    <span class="keyword">for</span> keyword <span class="keyword">in</span> dangerous_keywords:
+        <span class="keyword">if</span> keyword <span class="keyword">in</span> normalized:
+            <span class="keyword">return</span> <span class="keyword">False</span>
+            
+    <span class="comment"># Must begin with SELECT statement</span>
+    <span class="keyword">return</span> normalized.startswith(<span class="string">"SELECT"</span>)</code></pre>
+        </div>
+
+        <!-- Module 8 -->
+        <div class="module" id="m8">
+            <div class="module-header">
+                <div class="module-number">8</div>
+                <div class="module-title">
+                    <h2>Self-Assessment Quiz & Practice Exercises</h2>
+                    <p>Test your knowledge on full-stack AI development</p>
+                </div>
+            </div>
+
+            <div class="quiz-item">
+                <div class="quiz-question">Q1: Why does Smart-Scan Wallet use AsyncPG instead of synchronous database drivers?</div>
+                <details>
+                    <summary>Click to reveal answer</summary>
+                    <div class="answer-box">
+                        <strong>Answer:</strong> AsyncPG allows the server to handle concurrent operations (like waiting for OpenAI Vision API responses) without blocking the thread looper. This ensures high throughput and responsiveness.
+                    </div>
+                </details>
+            </div>
+
+            <div class="quiz-item">
+                <div class="quiz-question">Q2: How does the system prevent User A from seeing User B's expenses in the Chat interface?</div>
+                <details>
+                    <summary>Click to reveal answer</summary>
+                    <div class="answer-box">
+                        <strong>Answer:</strong> The Chat service dynamically injects `WHERE user_id = {user_id}` into the system prompt and programmatically validates that the generated SQL query enforces this filter before executing against PostgreSQL.
+                    </div>
+                </details>
+            </div>
+
+            <div class="quiz-item">
+                <div class="quiz-question">Q3: What happens if Supabase storage is unconfigured or offline during a receipt upload?</div>
+                <details>
+                    <summary>Click to reveal answer</summary>
+                    <div class="answer-box">
+                        <strong>Answer:</strong> The `StorageService` degrades gracefully to local disk storage (`/app/uploads`), ensuring receipt image processing and OCR continue without throwing a 500 fatal error.
+                    </div>
+                </details>
+            </div>
+
+            <div class="quiz-item">
+                <div class="quiz-question">Q4: What are the two core responsibilities of OpenAI GPT-4o-mini in this project?</div>
+                <details>
+                    <summary>Click to reveal answer</summary>
+                    <div class="answer-box">
+                        <strong>Answer:</strong> 1) Multimodal Vision OCR (extracting structured merchant, date, amount, and category from receipt photos), and 2) Text-to-SQL query generation and human answer synthesis for financial queries.
+                    </div>
+                </details>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
